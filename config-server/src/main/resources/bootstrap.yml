@@ -4,7 +4,7 @@ spring:
  application:
   name: config-server
  profiles:
-  active: pre, dev, chuy
+  active: pre, dev
  cloud:
   config:
    server:
