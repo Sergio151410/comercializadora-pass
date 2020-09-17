@@ -1,0 +1,11 @@
+server:
+ port: 9881
+spring:
+ profiles:
+  active: dev, pre
+ application:
+  name: catalogos-service
+app:
+ bitacora:
+  hostName: HostName
+  idWeb: idWeb

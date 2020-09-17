@@ -1,0 +1,17 @@
+server:
+ port: 9881
+spring:
+ profiles:
+  active: pre
+ application:
+  name: catalogos-service
+ jackson:
+  deserialization:
+   USE_BIG_DECIMAL_FOR_FLOATS: true
+  serialization:
+   write-bigdecimal-as-plain: true
+app:
+ bitacora:
+  hostName: HostName
+  idWeb: idWeb
+   

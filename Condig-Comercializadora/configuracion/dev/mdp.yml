@@ -1,0 +1,12 @@
+server:
+ port: 9889
+spring:
+ profiles:
+  active: dev, pre
+ application:
+  name: mdp-service
+  
+app:
+ bitacora:
+  hostName: Valor de HostName
+  idWeb: Valor de idWeb

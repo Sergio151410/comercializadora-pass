@@ -1,0 +1,41 @@
+server:
+ port: 9885
+spring:
+ profiles:
+  active: dev, pre
+ application:
+  name: frontadmin-service
+ data:
+  redis:
+   repositories:
+    enabled: false
+ cache:
+  type: redis
+  redis:
+   #Tiempo de persistencia en el cache de redis, en milisegundos
+   time-to-live: 600000
+ redis:
+  host: 192.168.10.106 
+  port: 6379
+  lettuce:
+   pool:
+    max-active: 24
+    max-idle: 24
+    min-idle: 8
+app:
+ bitacora:
+  hostName: Valor de HostName
+  idWeb: Valor de idWeb
+workflow:
+ cookie:
+  timetolive: 600000
+restservices:
+ sal:
+  validatoken: "http://192.168.10.105:9878/POLBAN_S_ENS/BtoChannelDriver.ssobto?dse_operationName=validaUsuario&token=%s&entrada.appID=%s&entrada.output=%s"
+  mantenerportal: "http://192.168.10.105:9878/SEMMEX_ENS/EarEstatico/SEMMEX_ENS/BtoChannelDriver.ssobto?dse_operationName=sesionManager&appID=%s&ts=%s"
+  appid: "INTRAMX-APPEB-SSO_WFOPERACIONES"
+  clientid: "6b65b0cb-0a9d-426a-b723-6cacb73cb0a6"
+soap:
+ resolver:
+  endpoint: "https://srvprtbdvlmx01.dev.mx.corp:8443/ResolverWS/ResolverServices"
+  

@@ -1,0 +1,20 @@
+server:
+ port: 9882
+spring:
+ http:
+  multipart:
+   max-file-size: 6MB 
+   max-request-size: 6MB
+   maxUpLoadSize : 5242880
+   maxInMemorySize : 5242880
+   maxUploadSizePerFile : 5242880
+ profiles:
+  active: dev, pre
+ application:
+  name: frontsolicitudes-service
+certificado:
+ activo: "ACTIVO"
+app:
+ bitacora:
+  hostName: Valor de HostName
+  idWeb: Valor de idWeb

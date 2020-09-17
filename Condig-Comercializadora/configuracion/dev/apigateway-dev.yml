@@ -1,0 +1,71 @@
+spring:
+ http:
+  multipart:
+   max-file-size: 5MB 
+   max-request-size: 5MB
+ profiles:
+  active: dev
+server:
+ port: 9999
+ribbon:
+ eureka:
+  enabled: false
+zuul:
+ host:
+  connect-timeout-millis: 6000000
+  socket-timeout-millis: 6000000
+  time-unit: MILLISECONDS
+  time-to-live: 300000
+ ribbonIsolationStrategy: THREAD
+ routes:
+  catalogos:
+   path: /catalogos/**
+   url: http://${catalogos}:9881/
+   stripPrefix: false
+  solicitudes:
+   path: /solicitudes/**
+   url: http://${solicitudes}:9882/
+   stripPrefix: false
+  foliador:
+   path: /foliador/**
+   url: http://${foliador}:9884/
+   stripPrefix: false
+  admin:
+   path: /admin/**
+   url: http://${admin}:9885/
+   stripPrefix: false
+  detalle:
+   path: /detalles/**
+   url: http://${detalle}:9887/
+   stripPrefix: false
+  estatus:
+   path: /estatus/**
+   url: http://${estatus}:9883/
+   stripPrefix: false
+  configServer:
+   path: /application/**
+   url: http://${configservice}:9880/workflow-web-dev.json
+   stripPrefix: true
+  cargadescarga:
+   path: /cargas_descargas/documentos/**
+   url: http://${cargadescarga}:9888/
+   stripPrefix: false
+  portal:
+   path: /SEMMEX_ENS/**
+   url: http://127.0.0.1:9878/
+   stripPrefix: false
+  front:
+   path: /**
+   url: http://${angularfront}:4200
+   stripPrefix: false
+hystrix:
+ command:
+  default:
+   execution:
+    timeout:
+     enabled: false
+
+security:
+ user:
+  password: password
+ sessions: ALWAYS
