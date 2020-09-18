@@ -1,0 +1,11 @@
+Manifest-Version: 1.0
+Built-By: sergi
+Build-Jdk: 14.0.2
+Implementation-Title: comercializadora-service
+Implementation-Version: 0.0.1-SNAPSHOT
+Implementation-Vendor-Id: com.comer.citri
+Implementation-URL: https://projects.spring.io/spring-boot/#/spring-boot
+ -starter-parent/comercializadora-service
+Main-Class: com.comer.citri.ComercializadoraServiceApplication
+Created-By: Maven Integration for Eclipse
+
