@@ -1,0 +1,80 @@
+#spring:
+#  application.name: mdp-service
+#  cloud:
+#    config:
+#      #Propiedades para obtencion de configuraciones del config-service REMOTO
+#      failFast: true
+#      retry:
+#        initialInterval: 6000
+#        multiplier: 1.5
+#        maxInterval: 30000
+#      enabled: true
+#      uri: ${url} #, http://config-service-git-namespace-dev.appls.cto1.paas.gsnetcloud.corp  #En ambientes PRE y PRO debe colocarse solamente la ruta corta (acceso por nombre de Service, no por Route)
+#      name: ${spring.application.name}
+#      label: ${label}
+#      profile: ${Ambiente}
+#  config:
+#    #Propiedades para obtencion de configuraciones en ambiente LOCAL
+#    name: ${spring.application.name}
+#    profile: ${spring.profiles.active}
+
+spring:
+ datasource:
+  hikari:
+   connection-timeout: 20000
+   minimum-idle: 10
+   maximum-pool-size: 10
+   idle-timeout: 10000
+ rabbitmq:
+  listener:
+   simple:
+    retry:
+     enabled: false
+  cache:
+   connection:
+    mode: CONNECTION
+    size: 10 
+  host: 192.168.10.105
+  port: 15672
+  username: guest
+  password: guest
+  queue: Q.H2H_ONLINE_D
+
+activemq:
+ user: QXHNOMD 
+ password:
+ broker-url: SRH2HDLM2MXR101.dev.mx.corp:4042?jms.redeliveryPolicy.maximumRedeliveries=0
+
+ profiles:
+  active: dev, pre
+
+oracle:
+ datasource:
+  bdhost:
+   #hostUrl: jdbc:oracle:thin:@mxbrvlh2hdes001.dev.mx.corp:1680:mxh2happ
+   hostUrl: jdbc:oracle:thin:@180.181.33.119:1680:mxh2happ
+   hostUsername: DEIFH2A3
+   hostPassword: deif_h2a3_desa
+   hostDriverClassName: oracle.jdbc.OracleDriver
+   hostValidation-query: SELECT 1 FROM dual
+
+servicios:
+ urls:
+  urlsTmb: http://localhost:8081/
+  urlsNmb: http://localhost:8083/
+
+server:
+  port: 8085
+  jpa:
+    show-sql: true 
+  redis:
+    host: redis-service
+    port: 6379
+  thymeleaf:
+    cache: true
+    encoding: UTF-8
+    mode: HTML5
+    prefix: classpath:/templates/
+    servlet:
+      content-type: 'text/html # ;charset=UTF8 is added'
+    suffix: .html  
