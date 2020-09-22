@@ -1,0 +1,171 @@
+--- 
+codes: 
+ app: WORKFLOW
+ modulo: OPERACIONES
+cookieAplicativa: 
+ nombre: token
+ response: Response
+bitacora:
+ aplicacion: WFOperaciones
+ idInstWeb: workflow-oper-web-mx-operaciones-wf-dev.appls.cto1.paas.gsnetcloud.corp
+front: 
+ title: WorkFlow Operaciones
+ fileNetConsulta: SessionFactoryFnTempWFO
+ maxFileSizeFront: 15
+ url: 
+  sesion: 
+   actualizar: api/tallerproductos/sessiones/actualizar
+   consultar: api/tallerproductos/sessiones/consultar
+   eliminar: api/tallerproductos/sessiones/eliminar
+  uri: 
+   validar: "http://url.uri.validar"
+ sal:
+  errores:
+   polban000003: "Usuario no encontrado en la portalización."
+   polban000002: "El usuario no se ha firmado en el portal."
+   polban000001: "Error inesperado al consumir el servicio SAL."
+ config:
+  errores:
+   tokenNoinformado: "Cookie/Token no informado."
+spring:
+ rabbitmq:
+  cache:
+   connection:
+    mode: CONNECTION
+    size: 10 
+  host: 10.101.15.205
+  port: 15672
+  username: guest
+  password: guest
+  queue: Q.WFOPERACIONES_PISTAS_AUDITORIA_D
+  queueadmin: fdfd
+ jackson:
+  date-format: MM/dd/yyyy hh:mm a Z
+  time-zone: America/Mexico_City
+ profiles:
+  active: dev, pre
+ jpa:
+   show-sql: true
+   generate-ddl: false
+   properties:
+    hibernate:
+     proc:
+      param_null_passing: true
+     dialect: org.hibernate.dialect.Oracle12cDialect
+     ddl-auto: validate
+     hbm2ddl:
+      import_files:
+ cloud:
+  config:
+   failFast: true
+   retry:
+   #Intervalo de tiempo inicial entre cada repeticion
+    initialInterval: 6000
+   #Incremento exponencial del tiempo de intervalo inicial
+    multiplier: 1.5
+   #Tiempo maximo al que puede crecer el intervalo
+    maxInterval: 30000
+ redis:
+  host: 10.101.15.205
+  port: 6379 
+  password:
+api-invoker-lib:
+ app-name: ${spring.application.name}
+ token:
+  url: https://front-grants-bussupport-comsrvc-security-appint-dev.appls.cto1.paas.gsnetcloud.corp/oauth2/v1/token
+  urlB412: https://webapigateway.dev.mx.corp/santander-mexico/factorias/current-account-inquiry/v1.1.0/operationsAndExecution/productSpecificFulfilment/loansAndDeposits/currentAccount/currentAccountInq/accounts 
+  urlPE68: https://webapigateway.dev.mx.corp/santander-mexico/factorias/party-data-inquiry/v1.1.0/referenceData/party/partyDataManagement/partyDataInq/parties
+  scopes: current-account-inquiry_1.1.0 party-data-inquiry_1.1.0
+  grantType: client_credentials
+  clientIdParty: cZMAZCqron9RumO27s1tisBAOazx077rwlIoSHSwrJY
+  clientSecretParty: JCi80QDA0cCEp6Tsr9ofqs5UEJZFwoqUD5YSm-El2Sk
+  clientIdAcc: GtVjqOa2kYytQZI25eJbNgxndT9ZAJl_kRtz7Py5JPU
+  globalId: 1111000111088
+logging:
+ level:
+  org.hibernate:
+   type: TRACE
+  com.zaxxer.hikari:
+   type: TRACE
+  org.springframework.orm.jpa:
+   type: TRACE
+log4j:
+ logger:
+  com.zaxxer.hikari: TRACE
+servicios:
+ configsftp:
+  identitySFTP: /home/detrwfop/ssh/id_rsa
+  knownHostSFTP: /home/detrwfop/ssh/known_hosts
+  userSFTP: deupwfpe
+  passSFTP: deupwfpe
+  ipSFTP: 10.101.15.205
+  portSFTP: 22000
+ authentication:
+  userSantander: DEHTPAWF2
+  passSantander: s1santan
+ urls:
+  urlsWebApiSantander: 'https://wbedadlm1mxr201.dev.mx.corp:1443/suite/'
+  urlMsFoliador: http://10.101.15.205:8085/foliador/gen_folio
+  urlMsSolicitudes: http://10.101.15.205:8084
+  urlMsAdmin: http://10.101.15.205:9885
+  urlMsCargaDesc: http://10.101.15.205:9888
+  urlMsDetalle: http://10.101.15.205:9887
+  urlMsTransacciones: http://10.101.15.205:9887/detalles/transaciones/
+  urlCargaDescarga: https://cargadescarga-service-mx-operaciones-wf-dev.appls.cto1.paas.gsnetcloud.corp/cargas_descargas/documentos/enviar_filenets_documentos
+  endpointMSIAppian: http://localhost:9887/detalles/meses_sin_intereses
+  #urlOpenText: https://wbcceilm1mxr201.pre.mx.corp:11443/contract-service/ContractService
+  #urlOpenText: https://srvccedvlmx03.dev.mx.corp:1443/contract-service/ContractService
+  urlOpenText: https://10.101.15.205:1443/contract-service/ContractService
+filenet:
+ urls:
+  urlMsTransversalSave: https://light-gateway-gd-mx-aperturabei-destdoc-dev.appls.cto1.paas.gsnetcloud.corp/stgd/archivos
+  urlMsTransversal: https://light-gateway-gd-mx-aperturabei-destdoc-dev.appls.cto1.paas.gsnetcloud.corp/stgd/documentos
+  urlMsGateway: https://light-gateway-gd-mx-aperturabei-destdoc-dev.appls.cto1.paas.gsnetcloud.corp:443/token
+  #urlMsTransversal: https://light-gateway-gd-mx-aperturabei-destdoc-dev.appls.cto1.paas.gsnetcloud.corp/stgd/documentos
+  #urlMsGateway: https://light-gateway-gd-mx-aperturabei-destdoc-dev.appls.cto1.paas.gsnetcloud.corp/token
+ authentication:
+  idCliente: 0f050766-f4e3-4583-b75c-3ec4b90a5335
+commons:
+ email:
+  urlEmail: https://wscetdlm1mxr201.dev.mx.corp:1443/WarWSCommonEmail/WSCommonEmailEndPoint
+oracle:
+ datasource:
+  bdadmin:
+   adminUrl: jdbc:oracle:thin:@10.101.15.205:16602/odmxwfo1
+   adminUsername: DEIFADMN
+   adminPassword: "Wf0p#R4N0vLs"
+   adminDriverClassName: oracle.jdbc.OracleDriver
+   adminValidation-query: SELECT 1 FROM dual
+  bdclient:
+   clientUrl: jdbc:oracle:thin:@10.101.15.205:16602/odmxwfo1
+   clientUsername: DEIFCLNT
+   clientPassword: "L1sNl#6zM4l"
+   clientDriverClassName: oracle.jdbc.OracleDriver
+   clientValidation-query: SELECT 1 FROM dual
+  bdprocesos:
+   procesosUrl: jdbc:oracle:thin:@10.101.15.205:16601/odmxwfo3
+   procesosUsername: DEIFPREX
+   procesosPassword: "X8kn4Z#iLO"
+   procesosDriverClassName: oracle.jdbc.OracleDriver
+   procesosValidation-query: SELECT 1 FROM dual
+  bdoperativa:
+   operativaUrl: jdbc:oracle:thin:@10.101.15.205:16600/odmxwfo2
+   operativaUsername: "DEIFOPER"
+   operativaPassword: "P4gS#6Tr4nsF"
+   operativaDriverclassName: oracle.jdbc.OracleDriver
+   operativaDalidation-query: SELECT 1 FROM dual
+  bdpistas:
+   operativaUrl: jdbc:oracle:thin:@10.101.15.205:16600/odmxwfo1
+   pistasUsername: DEHTPIST
+   pistasPassword: "Int3#4sP4g0s"
+   pistasDriverClassName: oracle.jdbc.OracleDriver
+   pistasDalidation-query: SELECT 1 FROM dual
+   pool:
+    operacionesMaximumPoolSize: 30
+    operacionesConnectionTimeout: 30000
+    operacionesidleTimeout: 30000
+    operacionesMinimumIdle: 5
+    operacionesLeakDetectionThreshold: 40000
+reportes:
+ queries:
+  appianQuery: SELECT sol.TXT_COMEN, sol.VAL_DIV, sol.VAL_FOLIO, sol.USR_SOLIC, sol.DSC_SOLIC, sol.USR_VALID, sol.DSC_VALID, sol.USR_APROB, sol.DSC_APROB, sol.VAL_REGION, sol.VAL_ZONA FROM SIO_MX_MAE_APPN_SOL_DRO sol

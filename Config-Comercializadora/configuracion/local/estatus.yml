@@ -1,0 +1,12 @@
+server:
+ port: 9883
+spring:
+ profiles:
+  active: pre
+ application:
+  name: detalle-service
+  
+app:
+ bitacora:
+  hostName: Valor de HostName
+  idWeb: Valor de idWeb

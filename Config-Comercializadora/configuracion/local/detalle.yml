@@ -1,0 +1,15 @@
+server:
+ port: 9887
+spring:
+ profiles:
+  active: pre
+ application:
+  name: detalle-service
+  
+app:
+ bitacora:
+  hostName: Valor de HostName
+  idWeb: Valor de idWeb
+reportes:
+ queries:
+  appianQuery: SELECT sol.TXT_COMEN, sol.VAL_DIV, sol.VAL_FOLIO, sol.USR_SOLIC, sol.DSC_SOLIC, sol.USR_VALID, sol.DSC_VALID, sol.USR_APROB, sol.DSC_APROB, sol.VAL_REGION, sol.VAL_ZONA FROM SIO_MX_MAE_APPN_SOL_DRO sol

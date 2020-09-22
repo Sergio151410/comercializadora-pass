@@ -1,0 +1,12 @@
+server:
+ port: 9884
+spring:
+ profiles:
+  active: pre
+ application:
+  name: foliador-service
+  
+app:
+ bitacora:
+  hostName: Valor de HostName
+  idWeb: Valor de idWeb

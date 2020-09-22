@@ -1,0 +1,12 @@
+server:
+ port: 9888
+spring:
+ profiles:
+  active: dev, pre
+ application:
+  name: cargadescarga-service
+  
+app:
+ bitacora:
+  hostName: Valor de HostName
+  idWeb: Valor de idWeb

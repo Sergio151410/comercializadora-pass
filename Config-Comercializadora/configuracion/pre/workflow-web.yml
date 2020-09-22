@@ -1,0 +1,35 @@
+codes: 
+ app: workflow-oper-web
+ modulo: WorkFlow
+cookieAplicativa: 
+ nombre: token
+ response: Response
+front: 
+ title: WorkFlow Operaciones
+ fileNetConsulta: SessionFactoryFnTempWFO
+ maxFileSizeFront: 15
+ urlPortales: SEMMEX_ENS/EarEstatico/SEMMEX_ENS/BtoChannelDriver.ssobto?dse_operationName=sesionManager&appID=INTRAMX-APPEB-SSO_WFOPERACIONES&ts=
+ sal:
+  errores:
+   polban000003: "Usuario no encontrado en la portalización."
+   polban000002: "El usuario no se ha firmado en el portal."
+   polban000001: "Error inesperado al consumir el servicio SAL."
+ config:
+  errores:
+   tokenNoinformado: "Cookie/Token no informado."
+servicios:
+ authentication:
+  userTata: x294217
+  passTata: Boris741
+  userVass: x294217
+  passVass: Boris741
+  userSantander: x294217
+  passSantander: Boris741
+ urls:
+  urlsWebApiTata: https://wbedadlm1mxr201.dev.mx.corp:1443/suite/
+  urlsWebApiVass: https://wbedadlm1mxr201.dev.mx.corp:1443/suite/
+  urlsWebApiSantander: https://wbedadlm1mxr201.dev.mx.corp:1443/suite/
+  urlMsFoliador: https://foliador-service:8080/foliador/gen_folio
+  urlMsSolicitudes: https://frontsolicitudes-service:8080
+  urlMsAdmin: https://frontadmin-service:8080
+  urlMsCargaDesc: https://cargadescarga-service:8080
