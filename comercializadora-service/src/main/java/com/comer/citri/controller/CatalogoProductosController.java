@@ -9,6 +9,9 @@
  */
 package com.comer.citri.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
@@ -51,6 +54,16 @@ public class CatalogoProductosController {
 		HttpStatus status = HttpStatus.OK;
 		LOGGER.info("altaCatalogosProducto-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
+	}
+	
+	@RequestMapping(path = "prueba", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<Map<String, Object>> prueba(){
+		String prueba = "HOLA MUNDO";
+		HttpStatus status = HttpStatus.OK;
+		Map<String, Object> response = new HashMap<String, Object>();
+		response.put("response", prueba);
+		response.put("status", status);
+		return new ResponseEntity<Map<String, Object>>(response, status);
 	}
 
 	/**

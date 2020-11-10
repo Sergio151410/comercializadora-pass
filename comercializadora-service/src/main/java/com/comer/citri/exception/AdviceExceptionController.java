@@ -9,15 +9,12 @@
  */
 package com.comer.citri.exception;
 
-import java.net.ConnectException;
-
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.transaction.CannotCreateTransactionException;
 import org.springframework.validation.BindException;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
@@ -137,25 +134,25 @@ public class AdviceExceptionController {
 		return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 			
-	/**
-	 * 
-	 * Descripcion : Metodo para el manejo de errores de conexion a base de datos
-	 * @author 1697401
-	 * @since  17/09/2019
-	 * @return Devuelve la propiedad del tipo ResponseEntity<ErroresBean> con los datos del error
-	 */
-	@ExceptionHandler({ConnectException.class, CannotCreateTransactionException.class})
-	public ResponseEntity<ErroresBean> errorHandler() {
-		LOGGER.info("Cachando error de conexion...");
-		/** Se establecen las propiedades del error*/
-		ErroresBean error = new ErroresBean();
-		error.setCode(ErrorContanst.CODIGO_PDIBD01);
-		error.setDescription(ErrorContanst.DESCRIPCION_PDIBD01);
-		error.setLevel(ErrorContanst.LEVEL_ERROR);
-		error.setServerStatusCode("500");
-		/** Se retorna la respuesta del error. Se define cualquier error no controlado como Internal Server Error*/
-		return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
-	}
+//	/**
+//	 * 
+//	 * Descripcion : Metodo para el manejo de errores de conexion a base de datos
+//	 * @author 1697401
+//	 * @since  17/09/2019
+//	 * @return Devuelve la propiedad del tipo ResponseEntity<ErroresBean> con los datos del error
+//	 */
+//	@ExceptionHandler({ConnectException.class, CannotCreateTransactionException.class})
+//	public ResponseEntity<ErroresBean> errorHandler() {
+//		LOGGER.info("Cachando error de conexion...");
+//		/** Se establecen las propiedades del error*/
+//		ErroresBean error = new ErroresBean();
+//		error.setCode(ErrorContanst.CODIGO_PDIBD01);
+//		error.setDescription(ErrorContanst.DESCRIPCION_PDIBD01);
+//		error.setLevel(ErrorContanst.LEVEL_ERROR);
+//		error.setServerStatusCode("500");
+//		/** Se retorna la respuesta del error. Se define cualquier error no controlado como Internal Server Error*/
+//		return new ResponseEntity<>(error,HttpStatus.INTERNAL_SERVER_ERROR);
+//	}
 	
 	/**
 	 * Descripcion : Metodo para el manejo de errores de conexion con microservicio
