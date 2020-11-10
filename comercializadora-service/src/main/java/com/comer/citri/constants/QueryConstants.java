@@ -48,4 +48,36 @@ public final class QueryConstants {
 	 * Descripcion: Declaracion de variable QUERY_PRODUCTOS del tipo String
 	 */
 	public static final String QUERY_PRODUCTOS = "";
+	
+	/**
+	 * 
+	 * Nombre: QUERY_ALTA_CLIENTES
+	 * Tipo: String
+	 * Descripcion: Declaracion de variable QUERY_ALTA_CLIENTES del tipo String
+	 */
+	public static final String QUERY_ALTA_CLIENTES = "";
+	
+	/**
+	 * 
+	 * Nombre: QUERY_BAJA_CLIENTES
+	 * Tipo: String
+	 * Descripcion: Declaracion de variable QUERY_BAJA_CLIENTES del tipo String
+	 */
+	public static final String QUERY_BAJA_CLIENTES = "";
+	
+	/**
+	 * 
+	 * Nombre: QUERY_UPDATE_CLIENTES
+	 * Tipo: String
+	 * Descripcion: Declaracion de variable QUERY_UPDATE_CLIENTES del tipo String
+	 */
+	public static final String QUERY_UPDATE_CLIENTES = "";
+	
+	/**
+	 * 
+	 * Nombre: QUERY_CLIENTES
+	 * Tipo: String
+	 * Descripcion: Declaracion de variable QUERY_CLIENTES del tipo String
+	 */
+	public static final String 	QUERY_CLIENTES = "";
 }

@@ -99,7 +99,7 @@ public class CRUDRespository implements ICRUDRespository {
 		LOGGER.info("bajaProductos--------------------------------------------------------BEGIN");
 		Map<String, Object> response = new HashMap<String, Object>();
 		int resultadoAlta = 0;
-		resultadoAlta = jdbcTemplateProcesos.update(QueryConstants.QUERY_ALTA_PRODUCTOS, 
+		resultadoAlta = jdbcTemplateProcesos.update(QueryConstants.DELETE_UPDATE_PRODUCTOS, 
 				baja.getIdProducto(),
 				baja.getDescripProducto(),
 				baja.getPrecioBase(),
@@ -127,7 +127,7 @@ public class CRUDRespository implements ICRUDRespository {
 		LOGGER.info("modifiacionProductos------------------------------------------------------BEGIN");
 		Map<String, Object> response = new HashMap<String, Object>();
 		int resultadoAlta = 0;
-		resultadoAlta = jdbcTemplateProcesos.update(QueryConstants.QUERY_ALTA_PRODUCTOS, 
+		resultadoAlta = jdbcTemplateProcesos.update(QueryConstants.QUERY_UPDATE_PRODUCTOS, 
 				mod.getIdProducto(),
 				mod.getDescripProducto(),
 				mod.getPrecioBase(),
