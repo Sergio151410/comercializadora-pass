@@ -10,18 +10,29 @@
 package com.comer.citri.controller;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.comer.citri.constants.APPConstants;
+import com.comer.citri.exception.BusinessException;
 import com.comer.citri.global.model.ResponseOperacionBean;
+import com.comer.citri.model.AltaProductosBean;
+import com.comer.citri.model.BajaProductosBean;
+import com.comer.citri.model.CatalogoProductosBean;
+import com.comer.citri.model.ModificacionProductosBean;
+import com.comer.citri.service.ICrudCatalogoProductoService;
+import com.comer.citri.utils.MensajeErrorUtils;
 
 /**
  * Descripcion: 
@@ -39,6 +50,15 @@ public class CatalogoProductosController {
 	 * Descripcion: Declaracion de variable LOGGER para la clase. El cual es requerido para desplegar mensajes en consola.
 	 */
 	private static final Logger LOGGER = LoggerFactory.getLogger(CatalogoProductosController.class);
+	
+	/**
+	 * 
+	 * Nombre: productoCat
+	 * Tipo: ICrudCatalogoProductoService
+	 * Descripcion: Declaracion de variable productoCat del tipo ICrudCatalogoProductoService
+	 */
+	@Autowired
+	private ICrudCatalogoProductoService productoCat;
 
 	/**
 	 * 
@@ -48,24 +68,21 @@ public class CatalogoProductosController {
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "altas_catalogos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> altaCatalogosProducto(){
+	public ResponseEntity<ResponseOperacionBean> altaCatalogosProducto(@RequestBody AltaProductosBean alta){
 		LOGGER.info("altaCatalogosProducto-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		HttpStatus status = HttpStatus.OK;
+		try {
+			Map<String, Object> resultado = productoCat.altaProductos(alta);
+			response.setResult(resultado);
+			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
+		} catch (BusinessException e) {
+			return MensajeErrorUtils.generarErrorException(e);	
+		}
 		LOGGER.info("altaCatalogosProducto-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}
 	
-	@RequestMapping(path = "prueba", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<Map<String, Object>> prueba(){
-		String prueba = "HOLA MUNDO";
-		HttpStatus status = HttpStatus.OK;
-		Map<String, Object> response = new HashMap<String, Object>();
-		response.put("response", prueba);
-		response.put("status", status);
-		return new ResponseEntity<Map<String, Object>>(response, status);
-	}
-
 	/**
 	 * 
 	 * Descripcion :
@@ -74,10 +91,17 @@ public class CatalogoProductosController {
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "bajas_catalogos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> bajasCatalogosProducto(){
+	public ResponseEntity<ResponseOperacionBean> bajasCatalogosProducto(@RequestBody BajaProductosBean baja){
 		LOGGER.info("bajasCatalogosProducto-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		HttpStatus status = HttpStatus.OK;
+		try {
+			Map<String, Object> resultado = productoCat.bajaProductos(baja);
+			response.setResult(resultado);
+			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
+		} catch (BusinessException e) {
+			return MensajeErrorUtils.generarErrorException(e);	
+		}
 		LOGGER.info("bajasCatalogosProducto-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}
@@ -90,10 +114,17 @@ public class CatalogoProductosController {
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "modificacion_catalogos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> modifiacionCatalogosProducto(){
+	public ResponseEntity<ResponseOperacionBean> modifiacionCatalogosProducto(@RequestBody ModificacionProductosBean mod){
 		LOGGER.info("modifiacionCatalogosProducto-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		HttpStatus status = HttpStatus.OK;
+		try {
+			Map<String, Object> resultado = productoCat.modifiacionProductos(mod);
+			response.setResult(resultado);
+			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
+		} catch (BusinessException e) {
+			return MensajeErrorUtils.generarErrorException(e);	
+		}
 		LOGGER.info("modifiacionCatalogosProducto-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}
@@ -105,11 +136,20 @@ public class CatalogoProductosController {
 	 * @since  21 sep. 2020
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
-	@RequestMapping(path = "consulta_catalogos", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+	@RequestMapping(path = "consulta_catalogos", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseOperacionBean> consultaCatalogosProducto(){
 		LOGGER.info("consultaCatalogosProducto-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
+		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.OK;
+		try {
+			List<CatalogoProductosBean> listado = productoCat.consultaProducto();
+			jsonMap.put("resultado", listado);
+			response.setResult(jsonMap);
+			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
+		} catch (BusinessException e) {
+			return MensajeErrorUtils.generarErrorException(e);	
+		}
 		LOGGER.info("consultaCatalogosProducto-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}

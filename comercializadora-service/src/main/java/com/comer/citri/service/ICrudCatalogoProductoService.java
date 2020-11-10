@@ -9,7 +9,8 @@
  */
 package com.comer.citri.service;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.comer.citri.exception.BusinessException;
 import com.comer.citri.model.AltaProductosBean;
@@ -33,7 +34,7 @@ public interface ICrudCatalogoProductoService {
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> altaProductos(AltaProductosBean alta) throws BusinessException;
+	Map<String, Object> altaProductos(AltaProductosBean alta) throws BusinessException;
 	
 	/**
 	 * 
@@ -44,7 +45,7 @@ public interface ICrudCatalogoProductoService {
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> bajaProductos(BajaProductosBean baja) throws BusinessException;
+	Map<String, Object> bajaProductos(BajaProductosBean baja) throws BusinessException;
 	
 	/**
 	 * 
@@ -55,17 +56,16 @@ public interface ICrudCatalogoProductoService {
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> modifiacionProductos(ModificacionProductosBean mod) throws BusinessException;
+	Map<String, Object> modifiacionProductos(ModificacionProductosBean mod) throws BusinessException;
 	
 	/**
 	 * 
 	 * Descripcion :Metodo que se encarga de realizar la altas de los productos.
 	 * @author sergi
 	 * @since  21 sep. 2020
-	 * @param consulta
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> consultaProducto(CatalogoProductosBean consulta) throws BusinessException;
+	List<CatalogoProductosBean> consultaProducto() throws BusinessException;
 
 }

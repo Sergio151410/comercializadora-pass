@@ -9,7 +9,8 @@
  */
 package com.comer.citri.repository;
 
-import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import com.comer.citri.exception.BusinessException;
 import com.comer.citri.exception.DataAccessException;
@@ -34,7 +35,7 @@ public interface ICRUDRespository {
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> altaProductos(AltaProductosBean alta) throws DataAccessException;
+	Map<String, Object> altaProductos(AltaProductosBean alta) throws DataAccessException;
 	
 	/**
 	 * 
@@ -45,7 +46,7 @@ public interface ICRUDRespository {
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> bajaProductos(BajaProductosBean baja) throws DataAccessException;
+	Map<String, Object> bajaProductos(BajaProductosBean baja) throws DataAccessException;
 	
 	/**
 	 * 
@@ -56,7 +57,7 @@ public interface ICRUDRespository {
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> modifiacionProductos(ModificacionProductosBean mod) throws DataAccessException;
+	Map<String, Object> modifiacionProductos(ModificacionProductosBean mod) throws DataAccessException;
 	
 	/**
 	 * 
@@ -67,6 +68,6 @@ public interface ICRUDRespository {
 	 * @return
 	 * @throws BusinessException Devuelve la propiedad del tipo HashMap<String,Object>
 	 */
-	HashMap<String, Object> consultaProducto(CatalogoProductosBean consulta) throws DataAccessException;
+	List<CatalogoProductosBean> consultaProducto() throws DataAccessException;
 
 }
