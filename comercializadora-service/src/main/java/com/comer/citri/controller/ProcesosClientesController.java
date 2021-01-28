@@ -15,14 +15,13 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.comer.citri.constants.APPConstants;
 import com.comer.citri.exception.BusinessException;
@@ -31,8 +30,6 @@ import com.comer.citri.model.AltaClientesBean;
 import com.comer.citri.model.BajaClientesBean;
 import com.comer.citri.model.ClientesComercializadoraBean;
 import com.comer.citri.model.ModificacionClienteBean;
-import com.comer.citri.service.ICRUDClientesService;
-import com.comer.citri.utils.MensajeErrorUtils;
 
 import io.swagger.annotations.Api;
 
@@ -43,7 +40,7 @@ import io.swagger.annotations.Api;
  *
  */
 @Api
-@RestController
+@Controller
 @RequestMapping(path = "/comer/clientes")
 public class ProcesosClientesController {
 	
@@ -56,32 +53,19 @@ public class ProcesosClientesController {
 	
 	/**
 	 * 
-	 * Nombre: clientesService
-	 * Tipo: ICRUDClientesService
-	 * Descripcion: Declaracion de variable clientesService del tipo ICRUDClientesService
-	 */
-	@Autowired
-	private ICRUDClientesService clientesService;
-	
-	/**
-	 * 
 	 * Descripcion :
 	 * @author sergi
 	 * @since  21 sep. 2020
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "altas_clientes", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> altaClientes(@RequestBody AltaClientesBean alta){
+	public ResponseEntity<ResponseOperacionBean> altaClientes(@RequestBody AltaClientesBean alta) throws BusinessException{
 		LOGGER.info("altaClientes-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		HttpStatus status = HttpStatus.OK;
-		try {
-			Map<String, Object> resultado = clientesService.altaClientes(alta);
-			response.setResult(resultado);
-			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
-		} catch (BusinessException e) {
-			return MensajeErrorUtils.generarErrorException(e);	
-		}
+		Map<String, Object> resultado = null;
+		response.setResult(resultado);
+		response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
 		LOGGER.info("altaClientes-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}
@@ -94,17 +78,13 @@ public class ProcesosClientesController {
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "bajas_clientes", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> bajasClientes(@RequestBody BajaClientesBean baja){
+	public ResponseEntity<ResponseOperacionBean> bajasClientes(@RequestBody BajaClientesBean baja) throws BusinessException{
 		LOGGER.info("bajasClientes-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		HttpStatus status = HttpStatus.OK;
-		try {
-			Map<String, Object> resultado = clientesService.bajaClientes(baja);
-			response.setResult(resultado);
-			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
-		} catch (BusinessException e) {
-			return MensajeErrorUtils.generarErrorException(e);	
-		}
+		Map<String, Object> resultado = null;
+		response.setResult(resultado);
+		response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
 		LOGGER.info("bajasClientes-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}
@@ -117,17 +97,13 @@ public class ProcesosClientesController {
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "modificacion_clientes", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> modifiacionClientes(@RequestBody ModificacionClienteBean mod){
+	public ResponseEntity<ResponseOperacionBean> modifiacionClientes(@RequestBody ModificacionClienteBean mod) throws BusinessException{
 		LOGGER.info("modifiacionClientes-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		HttpStatus status = HttpStatus.OK;
-		try {
-			Map<String, Object> resultado = clientesService.modifiacionClientes(mod);
-			response.setResult(resultado);
-			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
-		} catch (BusinessException e) {
-			return MensajeErrorUtils.generarErrorException(e);	
-		}
+		Map<String, Object> resultado = null;
+		response.setResult(resultado);
+		response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
 		LOGGER.info("modifiacionClientes-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}
@@ -140,19 +116,15 @@ public class ProcesosClientesController {
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "consulta_clientes", method = RequestMethod.GET, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> consultaClientes(){
+	public ResponseEntity<ResponseOperacionBean> consultaClientes() throws BusinessException{
 		LOGGER.info("consultaClientes-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		Map<String, Object> jsonMap = new HashMap<String, Object>();
 		HttpStatus status = HttpStatus.OK;
-		try {
-			List<ClientesComercializadoraBean> listado = clientesService.consultaClientes();
-			jsonMap.put("resultado", listado);
-			response.setResult(jsonMap);
-			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
-		} catch (BusinessException e) {
-			return MensajeErrorUtils.generarErrorException(e);	
-		}
+		List<ClientesComercializadoraBean> listado = null;
+		jsonMap.put("resultado", listado);
+		response.setResult(jsonMap);
+		response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
 		LOGGER.info("consultaClientes-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}

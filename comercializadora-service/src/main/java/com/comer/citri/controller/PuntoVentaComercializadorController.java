@@ -13,21 +13,18 @@ import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
 
 import com.comer.citri.constants.APPConstants;
 import com.comer.citri.exception.BusinessException;
 import com.comer.citri.global.model.ResponseOperacionBean;
 import com.comer.citri.model.PuntoVentaComercializadoraBean;
-import com.comer.citri.service.IPuntoDeVentaComercializadoraService;
-import com.comer.citri.utils.MensajeErrorUtils;
 
 import io.swagger.annotations.Api;
 
@@ -38,7 +35,7 @@ import io.swagger.annotations.Api;
  *
  */
 @Api
-@RestController
+@Controller
 @RequestMapping(path = "/comer/ventas")
 public class PuntoVentaComercializadorController {
 	
@@ -51,32 +48,19 @@ public class PuntoVentaComercializadorController {
 	
 	/**
 	 * 
-	 * Nombre: ventaService
-	 * Tipo: IPuntoDeVentaComercializadoraService
-	 * Descripcion: Declaracion de variable ventaService del tipo IPuntoDeVentaComercializadoraService
-	 */
-	@Autowired
-	private IPuntoDeVentaComercializadoraService ventaService;
-	
-	/**
-	 * 
 	 * Descripcion :
 	 * @author sergi
 	 * @since  21 sep. 2020
 	 * @return Devuelve la propiedad del tipo ResponseEntity<ResponseOperacionBean>
 	 */
 	@RequestMapping(path = "puntos_ventas", method = RequestMethod.POST, consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
-	public ResponseEntity<ResponseOperacionBean> altaClientes(@RequestBody PuntoVentaComercializadoraBean venta){
+	public ResponseEntity<ResponseOperacionBean> altaClientes(@RequestBody PuntoVentaComercializadoraBean venta) throws BusinessException{
 		LOGGER.info("altaClientes-------------------------------------BEGIN");
 		ResponseOperacionBean response = new ResponseOperacionBean();
 		HttpStatus status = HttpStatus.OK;
-		try {
-			Map<String, Object> resultado = ventaService.puntoDeVenta(venta);
-			response.setResult(resultado);
-			response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
-		} catch (BusinessException e) {
-			return MensajeErrorUtils.generarErrorException(e);	
-		}
+		Map<String, Object> resultado = null;
+		response.setResult(resultado);
+		response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
 		LOGGER.info("altaClientes-------------------------------------FINISH");
 		return new ResponseEntity<ResponseOperacionBean>(response,status);
 	}

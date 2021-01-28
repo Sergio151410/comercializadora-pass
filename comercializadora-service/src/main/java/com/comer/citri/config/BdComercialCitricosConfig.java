@@ -34,9 +34,9 @@ import com.zaxxer.hikari.HikariDataSource;
  * @author sergi
  *
  */
-@Configuration
-@EnableTransactionManagement(proxyTargetClass=false)
-@EnableJdbcRepositories(basePackages = "com.comer.citri.repository")
+//@Configuration
+//@EnableTransactionManagement(proxyTargetClass=false)
+//@EnableJdbcRepositories(basePackages = "com.comer.citri.repository")
 public class BdComercialCitricosConfig {
 	
 	/**
