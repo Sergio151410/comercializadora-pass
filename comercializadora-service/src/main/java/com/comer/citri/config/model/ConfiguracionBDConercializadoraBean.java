@@ -24,7 +24,7 @@ import org.springframework.validation.annotation.Validated;
  */
 @Configuration
 @EnableConfigurationProperties
-@ConfigurationProperties(prefix = "")
+@ConfigurationProperties(prefix = "spring.datasource")
 @Validated
 public class ConfiguracionBDConercializadoraBean implements Serializable {
 
@@ -37,132 +37,99 @@ public class ConfiguracionBDConercializadoraBean implements Serializable {
 	private static final long serialVersionUID = 145377847212743866L;
 	
 	/**
-	 * Nombre: procesosDriverClassName
-	 * Tipo: String
-	 * Descripcion: Declaracion de variable procesosDriverClassName del tipo String. Define el driver de la Base de Datos de Procesos
-	 */
-	private String procesosDriverClassName;
-	
-	/**
 	 * Nombre: procesosUrl
 	 * Tipo: String
 	 * Descripcion: Declaracion de variable procesosUrl del tipo String. Define la URL de la Base de datos de Procesos
 	 */
-	private String procesosUrl;
+	private String url;
 	
 	/**
 	 * Nombre: procesosUsername
 	 * Tipo: String
 	 * Descripcion: Declaracion de variable procesosUsername del tipo String. Define el usuario de conexion de la Base de Datos de Procesos
 	 */
-	private String procesosUsername;
+	private String username;
 	
 	/**
 	 * Nombre: procesosPassword
 	 * Tipo: String
 	 * Descripcion: Declaracion de variable procesosPassword del tipo String. Define el password de la Base de Datos de Procesos
 	 */
-	private String procesosPassword;
+	private String password;
 
 	/**
-	 * Descripcion: Metodo que devuelve la propiedad procesosDriverClassName del tipo String
-	 * procesosDriverClassName
+	 * Descripcion: Metodo que devuelve la propiedad url del tipo String
+	 * url
 	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @return regresa la propiedad procesosDriverClassName
+	 * Creado por    : sergi
+	 * Fecha Creacion:28 ene. 2021
+	 * @return regresa la propiedad url
 	 */
-	public String getProcesosDriverClassName() {
-		return procesosDriverClassName;
+	public String getUrl() {
+		return url;
 	}
 
 	/**
-	 * Descripcion: Metodo que establece la propiedad procesosDriverClassName del tipo String
-	 * procesosDriverClassName
+	 * Descripcion: Metodo que establece la propiedad url del tipo String
+	 * url
 	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @param procesosDriverClassName para ser establecida
-	 */
-	
-	public void setProcesosDriverClassName(String procesosDriverClassName) {
-		this.procesosDriverClassName = procesosDriverClassName;
-	}
-
-	/**
-	 * Descripcion: Metodo que devuelve la propiedad procesosUrl del tipo String
-	 * procesosUrl
-	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @return regresa la propiedad procesosUrl
-	 */
-	public String getProcesosUrl() {
-		return procesosUrl;
-	}
-
-	/**
-	 * Descripcion: Metodo que establece la propiedad procesosUrl del tipo String
-	 * procesosUrl
-	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @param procesosUrl para ser establecida
+	 * Creado por    : sergi
+	 * Fecha Creacion:28 ene. 2021
+	 * @param url para ser establecida
 	 */
 	
-	public void setProcesosUrl(String procesosUrl) {
-		this.procesosUrl = procesosUrl;
+	public void setUrl(String url) {
+		this.url = url;
 	}
 
 	/**
-	 * Descripcion: Metodo que devuelve la propiedad procesosUsername del tipo String
-	 * procesosUsername
+	 * Descripcion: Metodo que devuelve la propiedad username del tipo String
+	 * username
 	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @return regresa la propiedad procesosUsername
+	 * Creado por    : sergi
+	 * Fecha Creacion:28 ene. 2021
+	 * @return regresa la propiedad username
 	 */
-	public String getProcesosUsername() {
-		return procesosUsername;
+	public String getUsername() {
+		return username;
 	}
 
 	/**
-	 * Descripcion: Metodo que establece la propiedad procesosUsername del tipo String
-	 * procesosUsername
+	 * Descripcion: Metodo que establece la propiedad username del tipo String
+	 * username
 	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @param procesosUsername para ser establecida
-	 */
-	
-	public void setProcesosUsername(String procesosUsername) {
-		this.procesosUsername = procesosUsername;
-	}
-
-	/**
-	 * Descripcion: Metodo que devuelve la propiedad procesosPassword del tipo String
-	 * procesosPassword
-	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @return regresa la propiedad procesosPassword
-	 */
-	public String getProcesosPassword() {
-		return procesosPassword;
-	}
-
-	/**
-	 * Descripcion: Metodo que establece la propiedad procesosPassword del tipo String
-	 * procesosPassword
-	 * String
-	 * Creado por    : 1697401
-	 * Fecha Creacion:12/09/2019
-	 * @param procesosPassword para ser establecida
+	 * Creado por    : sergi
+	 * Fecha Creacion:28 ene. 2021
+	 * @param username para ser establecida
 	 */
 	
-	public void setProcesosPassword(String procesosPassword) {
-		this.procesosPassword = procesosPassword;
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
+	/**
+	 * Descripcion: Metodo que devuelve la propiedad password del tipo String
+	 * password
+	 * String
+	 * Creado por    : sergi
+	 * Fecha Creacion:28 ene. 2021
+	 * @return regresa la propiedad password
+	 */
+	public String getPassword() {
+		return password;
+	}
+
+	/**
+	 * Descripcion: Metodo que establece la propiedad password del tipo String
+	 * password
+	 * String
+	 * Creado por    : sergi
+	 * Fecha Creacion:28 ene. 2021
+	 * @param password para ser establecida
+	 */
+	
+	public void setPassword(String password) {
+		this.password = password;
+	}
 
 }
