@@ -20,25 +20,30 @@
 
 spring:
  datasource:
-  url: jdbc:mysql://192.168.1.4:3306/test
-  username: root
-  password: 1234
-  hikari:
-   connection-timeout: 20000
-   minimum-idle: 10
-   maximum-pool-size: 10
-   idle-timeout: 10000
+  url: jdbc:mysql://192.168.100.40:3306/citricosselectosgym?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  username: monty
+  password: some_pass
+  driver-class-name: com.mysql.jdbc.Driver
+# jpa:
+#  hibernate:
+#   ddl-auto: update
+#   dialect: org.hibernate.dialect.MySQL5Dialect
+#  hikari:
+#   connection-timeout: 20000
+#   minimum-idle: 10
+#   maximum-pool-size: 10
+#   idle-timeout: 10000
 
  profiles:
   active: dev, pre
 
 server:
   port: 8085
-  jpa:
-    show-sql: true 
-  redis:
-    host: redis-service
-    port: 6379
+#  jpa:
+#    show-sql: true 
+#  redis:
+#    host: redis-service
+#    port: 6379
   thymeleaf:
     cache: true
     encoding: UTF-8

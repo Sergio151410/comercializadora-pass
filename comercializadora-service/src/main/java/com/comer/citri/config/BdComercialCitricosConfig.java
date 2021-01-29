@@ -60,10 +60,10 @@ public class BdComercialCitricosConfig {
 	@Primary
     public HikariConfig hikariConfigProcesos() {
     	HikariConfig config =  new HikariConfig();
-    	config.setJdbcUrl(configuracion.getProcesosUrl());
-    	config.setDriverClassName(configuracion.getProcesosDriverClassName());
-    	config.setPassword(configuracion.getProcesosPassword());
-    	config.setUsername(configuracion.getProcesosUsername());
+    	config.setJdbcUrl(configuracion.getUrl());
+    	config.setDriverClassName("com.mysql.jdbc.Driver");
+    	config.setPassword(configuracion.getPassword());
+    	config.setUsername(configuracion.getUsername());
     	return config;
     }
 	
