@@ -17,7 +17,7 @@ import java.io.Serializable;
  * @author sergi
  *
  */
-public class AltaProductosBean implements Serializable{
+public class ProductoBean implements Serializable{
 
 	/**
 	 * 
@@ -33,7 +33,7 @@ public class AltaProductosBean implements Serializable{
 	 * Tipo: String
 	 * Descripcion: Declaracion de variable idProducto del tipo String
 	 */
-	private String idProducto;
+	private int id;
 	
 	/**
 	 * 
@@ -49,16 +49,17 @@ public class AltaProductosBean implements Serializable{
 	 * Tipo: String
 	 * Descripcion: Declaracion de variable precioBase del tipo String
 	 */
-	private String precioBase;
+	private double precio;
 	
-	/**
+        /**
 	 * 
-	 * Nombre: precionFinal
+	 * Nombre: icono
 	 * Tipo: String
-	 * Descripcion: Declaracion de variable precionFinal del tipo String
+	 * Descripcion: Declaracion de variable icono del tipo String
 	 */
-	private String precionFinal;
-
+        private String icono;
+        
+        private int status;
 	/**
 	 * Descripcion: Metodo que devuelve la propiedad precioBase del tipo String
 	 * precioBase
@@ -67,8 +68,8 @@ public class AltaProductosBean implements Serializable{
 	 * Fecha Creacion:10 nov. 2020
 	 * @return regresa la propiedad precioBase
 	 */
-	public String getPrecioBase() {
-		return precioBase;
+	public double getPrecio() {
+		return precio;
 	}
 
 	/**
@@ -80,35 +81,9 @@ public class AltaProductosBean implements Serializable{
 	 * @param precioBase para ser establecida
 	 */
 	
-	public void setPrecioBase(String precioBase) {
-		this.precioBase = precioBase;
+	public void setPrecio(double precio) {
+		this.precio = precio;
 	}
-
-	/**
-	 * Descripcion: Metodo que devuelve la propiedad precionFinal del tipo String
-	 * precionFinal
-	 * String
-	 * Creado por    : sergi
-	 * Fecha Creacion:10 nov. 2020
-	 * @return regresa la propiedad precionFinal
-	 */
-	public String getPrecionFinal() {
-		return precionFinal;
-	}
-
-	/**
-	 * Descripcion: Metodo que establece la propiedad precionFinal del tipo String
-	 * precionFinal
-	 * String
-	 * Creado por    : sergi
-	 * Fecha Creacion:10 nov. 2020
-	 * @param precionFinal para ser establecida
-	 */
-	
-	public void setPrecionFinal(String precionFinal) {
-		this.precionFinal = precionFinal;
-	}
-
 	/**
 	 * Descripcion: Metodo que devuelve la propiedad idProducto del tipo String
 	 * idProducto
@@ -117,8 +92,8 @@ public class AltaProductosBean implements Serializable{
 	 * Fecha Creacion:10 nov. 2020
 	 * @return regresa la propiedad idProducto
 	 */
-	public String getIdProducto() {
-		return idProducto;
+	public int getId() {
+		return id;
 	}
 
 	/**
@@ -130,8 +105,8 @@ public class AltaProductosBean implements Serializable{
 	 * @param idProducto para ser establecida
 	 */
 	
-	public void setIdProducto(String idProducto) {
-		this.idProducto = idProducto;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	/**
@@ -158,5 +133,27 @@ public class AltaProductosBean implements Serializable{
 	public void setDescripcionProducto(String descripcionProducto) {
 		this.descripcionProducto = descripcionProducto;
 	}
+        
+        public String getIcono()
+        {
+            return icono;
+        }
+        
+        public void setIcono(String icono)
+        {
+            this.icono = icono;
+        }
+        
+        public int getStatus()
+        {
+            return status;
+        }
+        
+        public void setStatus(int status)
+        {
+            this.status = status;
+        }
+        
+        
 	
 }

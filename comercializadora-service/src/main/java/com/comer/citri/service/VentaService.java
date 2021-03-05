@@ -75,9 +75,9 @@ public class VentaService implements IVentaService {
 		} catch (Exception e) {
 			LOGGER.error("Error al generar venta ", e);
 		}
-		
-		
-		return response;
+	
+	
+                return response;
 	}
 
 	private JTable llenaTable(VentaBean venta) {

@@ -20,9 +20,9 @@
 
 spring:
  datasource:
-  url: jdbc:mysql://192.168.100.40:3306/citricosselectosgym?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
-  username: monty
-  password: some_pass
+  url: jdbc:mysql://localhost:3306/citricosselectosgym?allowPublicKeyRetrieval=true&useSSL=false&useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  username: root
+  password: 
   driver-class-name: com.mysql.jdbc.Driver
 # jpa:
 #  hibernate:
