@@ -33,11 +33,18 @@ import com.comer.citri.model.ModificacionProductosBean;
 import com.comer.citri.service.IProductoService;
 
 import io.swagger.annotations.Api;
+import java.io.File;
+import org.apache.commons.codec.binary.Base64;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
+import java.io.File;
+import java.util.Date;
+import org.apache.commons.io.FileUtils;
+import org.apache.commons.codec.binary.Base64;
+import org.springframework.web.bind.annotation.RequestParam;
 
 /**
  * Descripcion:
@@ -148,14 +155,42 @@ public class CatalogoProductosController {
 
         jsonMap = productoService.getProductos(0, 0, "", "asc");
         HttpStatus status = HttpStatus.OK;
-        List<CatalogoProductosBean> listado = null;
-        jsonMap.put("resultado", listado);
         response.setResult(jsonMap);
         response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
-        System.out.println(response);
+        System.out.println(response.getResult());
+        System.out.println("jsonMap");
+        System.out.println(jsonMap);
         LOGGER.info("consultaCatalogosProducto-------------------------------------FINISH");
         return new ResponseEntity<ResponseOperacionBean>(response, status);
     }
 
+    @RequestMapping(path = "save_image", produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<ResponseOperacionBean> saveImage(@RequestParam(name = "base64str") String codedImage)
+            throws BusinessException {
+        ResponseOperacionBean response = new ResponseOperacionBean();
+        Map<String, Object> jsonMap = new HashMap<String, Object>();
+        try {
+            String rutaCompletaNombreArchivo = "C:\\Develop\\Imagenes\\";
+            String nombreArchivo = "product";
+            String base64str = codedImage;
+            base64str = base64str.split(",")[1];
+            String filePath = rutaCompletaNombreArchivo + File.separator + nombreArchivo + new Date().getTime() + ".jpg";
+            File file = new File(filePath);
+            byte[] bytes = Base64.decodeBase64(base64str);
+            FileUtils.writeByteArrayToFile(file, bytes);
+            jsonMap.put("filePath", filePath);
+            HttpStatus status = HttpStatus.OK;
+            response.setResult(jsonMap);
+            response.setStatus(APPConstants.KEY_APPLICATION_ESTATUS_OK);
+            System.out.println(response);
+            LOGGER.info("consultaCatalogosProducto-------------------------------------FINISH");
+            return new ResponseEntity<ResponseOperacionBean>(response, status);
+        } catch (Exception e) {
+            LOGGER.error("Error al tratar fecha ", e);
+            e.printStackTrace();
+        } finally {
+            return null;
+        }
+    }
 
 }
