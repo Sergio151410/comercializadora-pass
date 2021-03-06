@@ -1,8 +1,8 @@
 package com.comer.citri.utils;
 
-import com.sun.image.codec.jpeg.JPEGCodec;
-import com.sun.image.codec.jpeg.JPEGEncodeParam;
-import com.sun.image.codec.jpeg.JPEGImageEncoder;
+//import com.sun.image.codec.jpeg.JPEGCodec;
+//import com.sun.image.codec.jpeg.JPEGEncodeParam;
+//import com.sun.image.codec.jpeg.JPEGImageEncoder;
 import java.awt.Color;
 import java.awt.GradientPaint;
 import java.awt.Graphics2D;
@@ -291,77 +291,77 @@ public class PrinterMatrix {
     toPrinter(printer, escCommands);
   }
   
-  public void mapearDocumentoImageFile(int linha, int coluna, String fileName) {
-    setOutSize(linha, coluna);
-    int i;
-    for (i = 1; i <= coluna; i++) {
-      String print = i + "";
-      if (i >= 10 && i <= 99)
-        print = print.substring(1, 2); 
-      if (i >= 100 && i <= coluna)
-        print = print.substring(2, 3); 
-      printTextLinCol(1, i, print);
-    } 
-    for (i = 1; i <= linha; i++) {
-      String print = "" + i;
-      printTextLinCol(i, 1, print);
-    } 
-    toImageFile(fileName);
-  }
+//  public void mapearDocumentoImageFile(int linha, int coluna, String fileName) {
+//    setOutSize(linha, coluna);
+//    int i;
+//    for (i = 1; i <= coluna; i++) {
+//      String print = i + "";
+//      if (i >= 10 && i <= 99)
+//        print = print.substring(1, 2); 
+//      if (i >= 100 && i <= coluna)
+//        print = print.substring(2, 3); 
+//      printTextLinCol(1, i, print);
+//    } 
+//    for (i = 1; i <= linha; i++) {
+//      String print = "" + i;
+//      printTextLinCol(i, 1, print);
+//    } 
+//    toImageFile(fileName);
+//  }
   
-  public void toImageFile(String fileName) {
-    int width = (this.page[0]).length * 10;
-    int height = this.page.length * 10;
-    BufferedImage image = new BufferedImage(width, height, 1);
-    Graphics2D g = image.createGraphics();
-    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
-    g.setPaint(Color.white);
-    Rectangle2D rectangle = new Rectangle2D.Double(0.0D, 0.0D, width, height);
-    g.fill(rectangle);
-    GradientPaint gp = new GradientPaint(0.0F, 0.0F, Color.black, 400.0F, 100.0F, Color.black);
-    g.setPaint(gp);
-    try {
-      for (int i = 0; i < this.page.length; i++) {
-        for (int b = 0; b < (this.page[i]).length; ) {
-          String tmp = this.page[i][b];
-          if (tmp != null && !tmp.equals("")) {
-            int size = tmp.length();
-            g.drawString(tmp, b * 10, (i + 1) * 10);
-            b += size;
-            continue;
-          } 
-          g.drawString(" ", b * 10, (i + 1) * 10);
-          b++;
-        } 
-      } 
-      FileOutputStream file = new FileOutputStream(fileName);
-      JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(file);
-      JPEGEncodeParam jpegParams = encoder.getDefaultJPEGEncodeParam(image);
-      jpegParams.setQuality(1.0F, false);
-      encoder.setJPEGEncodeParam(jpegParams);
-      encoder.encode(image);
-      file.close();
-    } catch (Exception e) {
-      e.printStackTrace();
-    } 
-  }
+//  public void toImageFile(String fileName) {
+//    int width = (this.page[0]).length * 10;
+//    int height = this.page.length * 10;
+//    BufferedImage image = new BufferedImage(width, height, 1);
+//    Graphics2D g = image.createGraphics();
+//    g.setRenderingHint(RenderingHints.KEY_ANTIALIASING, RenderingHints.VALUE_ANTIALIAS_ON);
+//    g.setPaint(Color.white);
+//    Rectangle2D rectangle = new Rectangle2D.Double(0.0D, 0.0D, width, height);
+//    g.fill(rectangle);
+//    GradientPaint gp = new GradientPaint(0.0F, 0.0F, Color.black, 400.0F, 100.0F, Color.black);
+//    g.setPaint(gp);
+//    try {
+//      for (int i = 0; i < this.page.length; i++) {
+//        for (int b = 0; b < (this.page[i]).length; ) {
+//          String tmp = this.page[i][b];
+//          if (tmp != null && !tmp.equals("")) {
+//            int size = tmp.length();
+//            g.drawString(tmp, b * 10, (i + 1) * 10);
+//            b += size;
+//            continue;
+//          } 
+//          g.drawString(" ", b * 10, (i + 1) * 10);
+//          b++;
+//        } 
+//      } 
+//      FileOutputStream file = new FileOutputStream(fileName);
+//      JPEGImageEncoder encoder = JPEGCodec.createJPEGEncoder(file);
+//      JPEGEncodeParam jpegParams = encoder.getDefaultJPEGEncodeParam(image);
+//      jpegParams.setQuality(1.0F, false);
+//      encoder.setJPEGEncodeParam(jpegParams);
+//      encoder.encode(image);
+//      file.close();
+//    } catch (Exception e) {
+//      e.printStackTrace();
+//    } 
+//  }
   
-  public static void main(String[] args) {
-    PrinterMatrix t = new PrinterMatrix();
-    t.setOutSize(25, 80);
-    t.printCharAtLin(2, 25, 1, "*");
-    t.printCharAtCol(1, 1, 80, "*");
-    t.printCharAtLin(2, 25, 80, "*");
-    t.printTextLinCol(3, 39, "OK");
-    t.printTextLinCol(14, 40, "Teste");
-    t.printCharAtCol(25, 1, 80, "*");
-    t.printTextLinCol(14, 10, "Imprimindo em modo texto");
-    t.printCharAtCol(13, 2, 79, "-");
-    t.printCharAtCol(15, 2, 79, "-");
-    t.printCharAtLinCol(17, 24, 50, 79, "+");
-    t.printCharAtLinCol(17, 24, 2, 40, "+");
-    t.printCharAtLinCol(17, 20, 41, 49, "+");
-    t.toImageFile("printermatrix.jpg");
-    t.mapearDocumentoImageFile(25, 80, "printermatrix1.jpg");
-  }
+//  public static void main(String[] args) {
+//    PrinterMatrix t = new PrinterMatrix();
+//    t.setOutSize(25, 80);
+//    t.printCharAtLin(2, 25, 1, "*");
+//    t.printCharAtCol(1, 1, 80, "*");
+//    t.printCharAtLin(2, 25, 80, "*");
+//    t.printTextLinCol(3, 39, "OK");
+//    t.printTextLinCol(14, 40, "Teste");
+//    t.printCharAtCol(25, 1, 80, "*");
+//    t.printTextLinCol(14, 10, "Imprimindo em modo texto");
+//    t.printCharAtCol(13, 2, 79, "-");
+//    t.printCharAtCol(15, 2, 79, "-");
+//    t.printCharAtLinCol(17, 24, 50, 79, "+");
+//    t.printCharAtLinCol(17, 24, 2, 40, "+");
+//    t.printCharAtLinCol(17, 20, 41, 49, "+");
+//    t.toImageFile("printermatrix.jpg");
+//    t.mapearDocumentoImageFile(25, 80, "printermatrix1.jpg");
+//  }
 }
